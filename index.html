@@ -14,7 +14,7 @@
   />
 </head>
 <body>
-  <!--  Header / Navbar  -->
+  <!-- Header / Navbar -->
   <header class="site-header">
     <div class="container nav-container">
       <div class="logo">
@@ -31,6 +31,11 @@
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
+      <!-- Dark / Light mode toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light mode">
+        <span class="theme-icon"></span>
+      </button>
+
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -41,6 +46,8 @@
   <main>
     <!-- Hero -->
     <section class="hero" id="hero">
+      <div class="hero-bg-glow"></div>
+
       <div class="container hero-grid">
         <div class="hero-text reveal">
           <p class="hero-tag">Teen Developer • Tech Enthusiast</p>
@@ -50,6 +57,12 @@
             and exploring everything from <strong>web dev</strong> and
             <strong>automation</strong> to <strong>servers</strong> and <strong>gaming tech</strong>.
           </p>
+
+          <!-- Typing line -->
+          <p class="hero-typing">
+            <span id="typedText"></span><span class="caret"></span>
+          </p>
+
           <div class="hero-actions">
             <a href="#projects" class="btn primary">View My Projects</a>
             <a href="#about" class="btn ghost">Learn About Me</a>
@@ -143,11 +156,21 @@
               </ul>
             </div>
           </div>
+
+          <!-- What I'm doing now -->
+          <div class="now-card reveal">
+            <h3>What I’m doing right now</h3>
+            <ul>
+              <li>Building my personal tech brand and portfolio.</li>
+              <li>Experimenting with web animations and UX.</li>
+              <li>Playing with servers, hosting, and performance tuning.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
+    <!-- Skills + Tech stack + Stats -->
     <section class="section section-alt" id="skills">
       <div class="container">
         <div class="section-header center reveal">
@@ -201,6 +224,35 @@
             </ul>
           </div>
         </div>
+
+        <!-- Tech stack strip -->
+        <div class="stack-strip reveal">
+          <span class="stack-label">Tech stack</span>
+          <div class="stack-items">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Linux</span>
+            <span>Git & GitHub</span>
+            <span>Servers</span>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid reveal">
+          <div class="stat-card">
+            <span class="stat-number" data-target="3">0</span>
+            <span class="stat-label">Years into tech</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="15">0</span>
+            <span class="stat-label">Projects & experiments</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="7">0</span>
+            <span class="stat-label">Servers played with</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -215,7 +267,7 @@
         </div>
 
         <div class="projects-grid">
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-project="digi-wallet">
             <div class="project-badge">Concept</div>
             <h3>Digi Wallet Device</h3>
             <p>
@@ -230,7 +282,7 @@
             </ul>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-project="servers">
             <div class="project-badge">Tech</div>
             <h3>Game & Minecraft Servers</h3>
             <p>
@@ -244,7 +296,7 @@
             </ul>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-project="tools">
             <div class="project-badge">Web</div>
             <h3>Personal Tools & Scripts</h3>
             <p>
@@ -260,6 +312,23 @@
         </div>
       </div>
     </section>
+
+    <!-- Project modal -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
+      <div class="project-modal-content" role="dialog" aria-modal="true">
+        <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">
+          ✕
+        </button>
+        <div class="project-modal-body">
+          <h3 id="projectModalTitle">Project title</h3>
+          <p id="projectModalText">
+            Detailed description will appear here.
+          </p>
+          <ul class="project-modal-tags" id="projectModalTags"></ul>
+        </div>
+      </div>
+    </div>
 
     <!-- Journey / Timeline -->
     <section class="section section-alt" id="journey">
@@ -325,11 +394,27 @@
           <div>
             <h3>Let’s connect</h3>
             <ul class="contact-list">
-              <li><strong>Email:</strong> Mainhamody@gmail.com</li>
-              <li><strong>GitHub:</strong> github.com/Ahmd288</li>
-              <li><strong>Discord:</strong> Ahmd288</li>
+              <li>
+                <strong>Email:</strong>
+                <button class="copy-btn" data-copy="Mainhamody@gmail.com">
+                  <span>Mainhamody@gmail.com</span>
+                </button>
+              </li>
+              <li>
+                <strong>GitHub:</strong>
+                <a href="https://github.com/Ahmd288" target="_blank" rel="noopener noreferrer">
+                  github.com/Ahmd288
+                </a>
+              </li>
+              <li>
+                <strong>Discord:</strong>
+                <button class="copy-btn" data-copy="Ahmd288">
+                  <span>Ahmd288</span>
+                </button>
+              </li>
             </ul>
           </div>
+
           <div class="contact-card">
             <h3>Quick Message</h3>
             <p>
@@ -339,20 +424,49 @@
             <p class="contact-note">
               Tech is everything.
             </p>
+
+            <!-- Simple contact form (can be wired to Formspree / Netlify) -->
+            <form class="contact-form" id="contactForm">
+              <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" />
+              </div>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+              <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn primary form-btn">
+                Send (demo)
+              </button>
+              <p class="form-status" id="formStatus"></p>
+            </form>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Toast for copy notifications -->
+  <div class="toast" id="toast">Copied!</div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    ↑
+  </button>
+
   <footer class="site-footer">
     <div class="container footer-content">
       <span>© <span id="year"></span> Hamody. All rights reserved.</span>
-      <span>Built with HTML, CSS & JS.</span>
+      <span class="footer-built">
+        Built with <span>HTML</span> • <span>CSS</span> • <span>JavaScript</span> • <span>GitHub Pages</span>
+      </span>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
