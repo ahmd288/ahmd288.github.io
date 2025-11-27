@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamody.xyz | Planning My Future</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* same base styling as upcoming, shortened comments to save space */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #050814;
+      --bg-alt: #070b1b;
+      --card: #0c1124;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.12);
+      --accent-strong: rgba(79, 70, 229, 0.55);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease;
+    }
+
+    body.light-theme {
+      --bg: #f9fafb;
+      --bg-alt: #e5e7eb;
+      --card: #ffffff;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.08);
+      --accent-strong: rgba(79, 70, 229, 0.5);
+      --text: #020617;
+      --muted: #4b5563;
+      --border-subtle: #d1d5db;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 0% 0%, #111827, #020617 40%, #000 85%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    body.light-theme {
+      background: linear-gradient(180deg, #f9fafb, #e5e7eb);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 4.5rem 0 4rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-header.center {
+      text-align: center;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.88),
+        rgba(15, 23, 42, 0.7),
+        rgba(15, 23, 42, 0.18)
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    body.light-theme .site-header {
+      background: linear-gradient(
+        to bottom,
+        rgba(249, 250, 251, 0.92),
+        rgba(249, 250, 251, 0.75),
+        rgba(249, 250, 251, 0.2)
+      );
+      border-bottom-color: rgba(148, 163, 184, 0.35);
+      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.35);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 30%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 0 0, #22d3ee, var(--accent));
+      font-weight: 700;
+      box-shadow: 0 0 18px rgba(79, 70, 229, 0.4);
+    }
+
+    .logo-text {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 0.15rem;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.1rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #4f46e5);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    .theme-toggle {
+      margin-left: 1rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(
+        circle at 30% 0,
+        rgba(250, 250, 255, 0.32),
+        rgba(15, 23, 42, 0.95)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: rgba(129, 140, 248, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .theme-icon {
+      font-size: 0.9rem;
+    }
+
+    body.light-theme .theme-toggle {
+      background: radial-gradient(circle at 30% 0, #ffffff, #e5e7eb);
+      border-color: rgba(148, 163, 184, 0.8);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      transition: transform var(--transition-med), opacity var(--transition-med);
+    }
+
+    body.light-theme .nav-toggle span {
+      background: #111827;
+    }
+
+    .page-hero {
+      padding: 4.5rem 0 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      inset: -220px -320px auto auto;
+      background: radial-gradient(circle at top, #4f46e5, transparent 60%);
+      opacity: 0.28;
+      pointer-events: none;
+      transform-origin: center;
+      transition: transform 0.4s ease-out;
+    }
+
+    body.light-theme .hero-bg-glow {
+      opacity: 0.22;
+      background: radial-gradient(circle at top, #818cf8, transparent 60%);
+    }
+
+    .page-hero-inner {
+      max-width: 720px;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a5b4fc;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title span.accent {
+      color: #a5b4fc;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.2rem;
+      margin-top: 2.2rem;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #020617, #020617);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.5rem 1.6rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-med),
+        border-color var(--transition-med),
+        box-shadow var(--transition-med),
+        background var(--transition-med);
+    }
+
+    body.light-theme .card {
+      background: #ffffff;
+      border-color: rgba(148, 163, 184, 0.55);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.18), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-strong);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .card ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    .pill-row {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      color: #c7d2fe;
+    }
+
+    body.light-theme .pill {
+      color: #4f46e5;
+    }
+
+    .timeline {
+      margin-top: 2.5rem;
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #4b5563, transparent);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 3px solid #4b5563;
+      background: #020617;
+      margin-top: 0.25rem;
+    }
+
+    body.light-theme .timeline-dot {
+      background: #ffffff;
+      border-color: #9ca3af;
+    }
+
+    .timeline-content {
+      background: radial-gradient(circle at top left, #020617, #020617);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 0.9rem 1rem;
+    }
+
+    body.light-theme .timeline-content {
+      background: #ffffff;
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ca3af;
+    }
+
+    .timeline-content h4 {
+      font-size: 0.98rem;
+      margin: 0.3rem 0 0.35rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .site-footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 1.2rem 0 1.6rem;
+      background: #020617;
+    }
+
+    body.light-theme .site-footer {
+      background: #f9fafb;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .footer-built span {
+      font-weight: 500;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+      transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 1.3rem;
+      bottom: 1.5rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.1), #020617);
+      color: #e5e7eb;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 55;
+    }
+
+    body.light-theme .back-to-top {
+      background: radial-gradient(circle at 30% 0, #ffffff, #e5e7eb);
+      color: #111827;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        position: absolute;
+        right: 1.25rem;
+        top: 60px;
+        flex-direction: column;
+        gap: 0.5rem;
+        background: rgba(15, 23, 42, 0.96);
+        padding: 0.8rem 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity var(--transition-med),
+          transform var(--transition-med);
+      }
+
+      body.light-theme .nav {
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .nav.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(4px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      transform: translateY(-4px) rotate(-45deg);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid rgba(129, 140, 248, 0.9);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo">
+        <span class="logo-mark">H</span>
+        <span class="logo-text">Hamody.xyz</span>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">Hub</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="upcoming.html" class="nav-link">Upcoming</a>
+        <a href="future.html" class="nav-link active">Future Plan</a>
+        <a href="work-log.html" class="nav-link">Work Log</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light mode">
+        <span class="theme-icon"></span>
+      </button>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-bg-glow"></div>
+      <div class="container">
+        <div class="page-hero-inner reveal">
+          <div class="hero-kicker">Direction</div>
+          <h1 class="hero-title">
+            How I’m <span class="accent">planning my future</span> in tech and school.
+          </h1>
+          <p class="hero-text">
+            This page isn’t a promise – it’s a rough map. I’ll keep updating it
+            as I learn more, change plans, or unlock new opportunities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="two-col">
+          <div class="card reveal">
+            <h3>Short-term focus (next 1–2 years)</h3>
+            <p>
+              The things I’m focusing on right now to level up as a developer and student.
+            </p>
+            <ul>
+              <li>• Get more comfortable with <strong>JavaScript</strong> and modern web flows.</li>
+              <li>• Build more <strong>real projects</strong> instead of only experiments.</li>
+              <li>• Improve <strong>math & science</strong> to support future tech studies.</li>
+              <li>• Document what I do: notes, logs, and clean GitHub repos.</li>
+            </ul>
+            <div class="pill-row">
+              <span class="pill">Consistency</span>
+              <span class="pill">Portfolio building</span>
+              <span class="pill">School + tech balance</span>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Long-term direction</h3>
+            <p>
+              I see myself somewhere between <strong>software engineering</strong>,
+              <strong>fintech</strong>, and <strong>product building</strong>.
+            </p>
+            <ul>
+              <li>• Strong base in programming + computer science.</li>
+              <li>• Experience with real users, not only personal projects.</li>
+              <li>• A track record of shipping tools that people enjoy using.</li>
+            </ul>
+            <div class="pill-row">
+              <span class="pill">Product mindset</span>
+              <span class="pill">Fintech curiosity</span>
+              <span class="pill">Global options</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header center reveal" style="margin-top:2.8rem;">
+          <h2>Rough timeline</h2>
+          <p class="section-subtitle">
+            A flexible roadmap from “right now” to the next few years.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">Now</span>
+              <h4>Learn, build, and document</h4>
+              <p>
+                Keep improving my HTML/CSS/JS and tech knowledge, finish school work,
+                and turn experiments into documented projects.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">Next phase</span>
+              <h4>Serious portfolio & collabs</h4>
+              <p>
+                Build a stronger portfolio on hamody.xyz, collaborate with friends,
+                and start exploring internships, online programs, or scholarships.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">Later</span>
+              <h4>Deep dive into software & fintech</h4>
+              <p>
+                Study software engineering / CS, get closer to real fintech projects
+                like Digi Wallet, and ship products for real users.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    ↑
+  </button>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span>© <span id="year"></span> Hamody. Planning the future.</span>
+      <span class="footer-built">Updated from <span>Hamody.xyz Hub</span></span>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const nav = document.getElementById("nav");
+
+    if (navToggle && nav) {
+      navToggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
+        navToggle.classList.toggle("active");
+      });
+
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          navToggle.classList.remove("active");
+        });
+      });
+    }
+
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = themeToggle?.querySelector(".theme-icon");
+    const storedTheme = localStorage.getItem("hub-theme");
+
+    if (storedTheme === "light" || storedTheme === "dark") {
+      body.classList.toggle("light-theme", storedTheme === "light");
+    }
+
+    function updateThemeIcon() {
+      if (!themeIcon) return;
+      const isLight = body.classList.contains("light-theme");
+      themeIcon.textContent = isLight ? "☀" : "☾";
+    }
+    updateThemeIcon();
+
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("light-theme");
+        const isLight = body.classList.contains("light-theme");
+        localStorage.setItem("hub-theme", isLight ? "light" : "dark");
+        updateThemeIcon();
+      });
+    }
+
+    const heroBgGlow = document.querySelector(".hero-bg-glow");
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      if (heroBgGlow) {
+        const scale = 1 + scrollY * 0.0006;
+        heroBgGlow.style.transform =
+          `scale(${scale}) translate3d(0, ${scrollY * -0.04}px, 0)`;
+      }
+    });
+
+    const backToTop = document.getElementById("backToTop");
+    if (backToTop) {
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY > 300) backToTop.classList.add("show");
+        else backToTop.classList.remove("show");
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  </script>
+</body>
+</html>

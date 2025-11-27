@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamody | Contact</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ==== Global Styles ==== */
+    *,
+
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #050814;
+      --bg-alt: #070b1b;
+      --card: #0c1124;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.12);
+      --accent-strong: rgba(79, 70, 229, 0.55);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --shadow-hero: 0 30px 80px rgba(0, 0, 0, 0.65);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.25s ease;
+    }
+
+    /* Light theme overrides */
+    body.light-theme {
+      --bg: #f9fafb;
+      --bg-alt: #e5e7eb;
+      --card: #ffffff;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.08);
+      --accent-strong: rgba(79, 70, 229, 0.5);
+      --text: #020617;
+      --muted: #4b5563;
+      --border-subtle: #d1d5db;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 0% 0%, #111827, #020617 40%, #000 85%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Light theme background / general */
+    body.light-theme {
+      background: linear-gradient(180deg, #f9fafb, #e5e7eb);
+    }
+
+    /* Containers & Layout */
+    .container {
+      width: min(1100px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-alt {
+      padding: 5rem 0;
+      background: radial-gradient(circle at top, #020617, #020617 40%, #000 90%);
+    }
+
+    body.light-theme .section-alt {
+      background: linear-gradient(180deg, #eef2ff, #e5e7eb);
+    }
+
+    .section-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-header.center {
+      text-align: center;
+      max-width: 620px;
+      margin-inline: auto;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Header / Nav */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.88),
+        rgba(15, 23, 42, 0.7),
+        rgba(15, 23, 42, 0.18)
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    body.light-theme .site-header {
+      background: linear-gradient(
+        to bottom,
+        rgba(249, 250, 251, 0.92),
+        rgba(249, 250, 251, 0.75),
+        rgba(249, 250, 251, 0.2)
+      );
+      border-bottom-color: rgba(148, 163, 184, 0.35);
+      box-shadow: 0 12px 30px rgba(148, 163, 184, 0.35);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 30%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 0 0, #22d3ee, var(--accent));
+      font-weight: 700;
+      box-shadow: 0 0 18px rgba(79, 70, 229, 0.4);
+    }
+
+    .logo-text {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 0.15rem;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.15rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #4f46e5);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      margin-left: 1rem;
+      margin-right: 0.4rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(
+        circle at 30% 0,
+        rgba(250, 250, 255, 0.32),
+        rgba(15, 23, 42, 0.95)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: rgba(129, 140, 248, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .theme-icon {
+      font-size: 0.9rem;
+    }
+
+    body.light-theme .theme-toggle {
+      background: radial-gradient(circle at 30% 0, #ffffff, #e5e7eb);
+      border-color: rgba(148, 163, 184, 0.8);
+    }
+
+    /* Mobile Nav */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      transition: transform var(--transition-med), opacity var(--transition-med);
+    }
+
+    body.light-theme .nav-toggle span {
+      background: #111827;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      inset: -200px -300px auto auto;
+      background: radial-gradient(circle at top, #4f46e5, transparent 60%);
+      opacity: 0.28;
+      pointer-events: none;
+      transform-origin: center;
+      transition: transform 0.4s ease-out;
+    }
+
+    body.light-theme .hero-bg-glow {
+      opacity: 0.22;
+      background: radial-gradient(circle at top, #818cf8, transparent 60%);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a5b4fc;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .accent {
+      color: #a5b4fc;
+    }
+
+    .hero-typing {
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 1.2em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-typing .caret {
+      display: inline-block;
+      width: 1px;
+      height: 1.05em;
+      margin-left: 3px;
+      vertical-align: bottom;
+      background: currentColor;
+      animation: caretBlink 0.9s steps(2, start) infinite;
+    }
+
+    @keyframes caretBlink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+      50.01%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      margin: 1.1rem 0 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #4f46e5, #22c55e);
+      box-shadow: 0 18px 40px rgba(79, 70, 229, 0.5);
+      color: #f9fafb;
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 24px 55px rgba(79, 70, 229, 0.65);
+    }
+
+    .btn.primary:active {
+      transform: translateY(0) scale(0.99);
+      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn.ghost {
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.6);
+      color: #e5e7eb;
+    }
+
+    body.light-theme .btn.ghost {
+      background: rgba(243, 244, 246, 0.9);
+      color: #111827;
+    }
+
+    .btn.ghost:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    body.light-theme .btn.ghost:hover {
+      background: #e5e7eb;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .profile-card {
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border-radius: var(--radius-xl);
+      padding: 1.7rem 1.5rem;
+      box-shadow: var(--shadow-hero);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      width: min(320px, 100%);
+      position: relative;
+      z-index: 2;
+    }
+
+    body.light-theme .profile-card {
+      background: linear-gradient(145deg, #ffffff, #e5e7eb);
+      border-color: rgba(148, 163, 184, 0.6);
+      box-shadow: 0 18px 40px rgba(148, 163, 184, 0.55);
+    }
+
+    .profile-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 0 0, #22d3ee, #6366f1);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 25px rgba(79, 70, 229, 0.6);
+    }
+
+    .profile-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .profile-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-tags span {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    body.light-theme .profile-tags span {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+    }
+
+    .profile-status {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .floating-card {
+      position: absolute;
+      padding: 0.8rem 1rem;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 0.7rem;
+      max-width: 220px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+    }
+
+    body.light-theme .floating-card {
+      background: rgba(255, 255, 255, 0.85);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .floating-card h3 {
+      font-size: 0.8rem;
+    }
+
+    .floating-card p {
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .fc-1 {
+      top: 14%;
+      right: 3%;
+    }
+
+    .fc-2 {
+      bottom: 5%;
+      left: -2%;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 1.8rem;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 0.7rem;
+      color: #9ca3af;
+      opacity: 0.8;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 26px;
+      margin: 0.15rem auto 0;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #9ca3af, transparent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: #e5e7eb;
+      animation: scrollPulse 1.3s infinite ease-in-out;
+    }
+
+    @keyframes scrollPulse {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+    }
+
+    /* Contact layout */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      margin-top: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin-top: 0.9rem;
+    }
+
+    .contact-list li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .copy-btn {
+      border: none;
+      background: none;
+      color: inherit;
+      cursor: pointer;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(148, 163, 184, 0.15);
+      transform: translateY(-1px);
+    }
+
+    body.light-theme .copy-btn:hover {
+      background: rgba(148, 163, 184, 0.25);
+    }
+
+    .copy-btn span {
+      font-size: 0.88rem;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #020617, #020617);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    body.light-theme .contact-card {
+      background: #ffffff;
+    }
+
+    .contact-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-note {
+      margin-top: 0.65rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* Contact form */
+    .contact-form {
+      margin-top: 1.2rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .form-row label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .form-row input,
+    .form-row textarea {
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text);
+      padding: 0.45rem 0.65rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+
+    body.light-theme .form-row input,
+    body.light-theme .form-row textarea {
+      background: #f9fafb;
+      border-color: #d1d5db;
+    }
+
+    .form-row input:focus-visible,
+    .form-row textarea:focus-visible {
+      outline: 2px solid rgba(129, 140, 248, 0.8);
+      outline-offset: 1px;
+    }
+
+    .form-btn {
+      margin-top: 0.3rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .form-status {
+      font-size: 0.78rem;
+      color: var(--muted);
+      min-height: 1em;
+      margin-top: 0.35rem;
+    }
+
+    /* GitHub link grey but clickable */
+    .contact-list a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .contact-list a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.8rem;
+      transform: translateX(-50%) translateY(20px);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;
+      font-size: 0.8rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 70;
+    }
+
+    body.light-theme .toast {
+      background: rgba(15, 23, 42, 0.95);
+      color: #f9fafb;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      right: 1.3rem;
+      bottom: 1.5rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.1), #020617);
+      color: #e5e7eb;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 55;
+    }
+
+    body.light-theme .back-to-top {
+      background: radial-gradient(circle at 30% 0, #ffffff, #e5e7eb);
+      color: #111827;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.6);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 1.3rem 0 1.6rem;
+      background: #020617;
+    }
+
+    body.light-theme .site-footer {
+      background: #f9fafb;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .footer-built span {
+      font-weight: 500;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+      transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Keyboard focus styles */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid rgba(129, 140, 248, 0.9);
+      outline-offset: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 3.8rem;
+      }
+
+      .nav {
+        position: absolute;
+        right: 1.25rem;
+        top: 60px;
+        flex-direction: column;
+        gap: 0.5rem;
+        background: rgba(15, 23, 42, 0.96);
+        padding: 0.8rem 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity var(--transition-med),
+          transform var(--transition-med);
+      }
+
+      body.light-theme .nav {
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .nav.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .theme-toggle {
+        order: 2;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .section {
+        padding: 3.8rem 0;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(4px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      transform: translateY(-4px) rotate(-45deg);
+    }
+
+    @media (max-width: 480px) {
+      .profile-card {
+        padding: 1.3rem 1.2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo">
+        <span class="logo-mark">H</span>
+        <span class="logo-text">Hamody.dev</span>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">Hub</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="upcoming.html" class="nav-link">Upcoming</a>
+        <a href="future.html" class="nav-link">Future</a>
+        <a href="work-log.html" class="nav-link">Work Log</a>
+        <a href="#contact" class="nav-link active">Contact</a>
+      </nav>
+
+      <!-- Dark / Light mode toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light mode">
+        <span class="theme-icon"></span>
+      </button>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-glow"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-text reveal">
+          <p class="hero-tag">Let’s talk</p>
+          <h1>Contact <span class="accent">Hamody</span>.</h1>
+          <p class="hero-subtitle">
+            Whether it’s tech, web ideas, servers, or just geeking out about hardware,
+            this is where you can reach me.
+          </p>
+
+          <p class="hero-typing">
+            <span id="typedText"></span><span class="caret"></span>
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn primary">Jump to contact</a>
+            <a href="portfolio.html" class="btn ghost">View portfolio</a>
+          </div>
+
+          <div class="hero-meta">
+            <span>💬 Open to collabs & experiments</span>
+            <span>🌍 Online first, always building</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="profile-card">
+            <div class="profile-avatar">
+              <span>H</span>
+            </div>
+            <h2>Hamody</h2>
+            <p>Student • Developer • Tech Geek</p>
+            <div class="profile-tags">
+              <span>HTML / CSS / JS</span>
+              <span>Servers & Hosting</span>
+              <span>Fintech Ideas</span>
+            </div>
+            <div class="profile-status">
+              <span class="status-dot"></span>
+              <span>Usually online & experimenting</span>
+            </div>
+          </div>
+          <div class="floating-card fc-1">
+            <p>📨 Best way to reach me</p>
+            <h3>Email or Discord DM</h3>
+          </div>
+          <div class="floating-card fc-2">
+            <p>🔗 Bonus</p>
+            <h3>Check my GitHub for what I’m building</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header center reveal">
+          <h2>Contact & Links</h2>
+          <p class="section-subtitle">
+            These are the main ways to reach me or see what I’m working on.
+          </p>
+        </div>
+
+        <div class="contact-grid reveal">
+          <div>
+            <h3>Let’s connect</h3>
+            <ul class="contact-list">
+              <li>
+                <strong>Email:</strong>
+                <button class="copy-btn" data-copy="Mainhamody@gmail.com">
+                  <span>Mainhamody@gmail.com</span>
+                </button>
+              </li>
+              <li>
+                <strong>GitHub:</strong>
+                <a href="https://github.com/Ahmd288" target="_blank" rel="noopener noreferrer">
+                  github.com/Ahmd288
+                </a>
+              </li>
+              <li>
+                <strong>Discord:</strong>
+                <button class="copy-btn" data-copy="Ahmd288">
+                  <span>Ahmd288</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-card">
+            <h3>Quick Message</h3>
+            <p>
+              You can send a quick note here (demo only), then use email or Discord
+              for a real conversation.
+            </p>
+            <p class="contact-note">
+              I usually reply faster on Discord.
+            </p>
+
+            <form class="contact-form" id="contactForm">
+              <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" />
+              </div>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+              <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn primary form-btn">
+                Send (demo)
+              </button>
+              <p class="form-status" id="formStatus"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast for copy notifications -->
+  <div class="toast" id="toast">Copied!</div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    ↑
+  </button>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span>© <span id="year"></span> Hamody. All rights reserved.</span>
+      <span class="footer-built">
+        Built with <span>HTML</span> • <span>CSS</span> • <span>JavaScript</span> • <span>GitHub Pages</span>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const nav = document.getElementById("nav");
+
+    if (navToggle && nav) {
+      navToggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
+        navToggle.classList.toggle("active");
+      });
+
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          navToggle.classList.remove("active");
+        });
+      });
+    }
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    // Dynamic year in footer
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+
+    /* ================================
+      Dark / Light mode toggle
+    ================================== */
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = themeToggle?.querySelector(".theme-icon");
+
+    const storedTheme = localStorage.getItem("theme");
+
+    if (storedTheme === "light" || storedTheme === "dark") {
+      body.classList.toggle("light-theme", storedTheme === "light");
+    } else {
+      body.classList.toggle("light-theme", false);
+    }
+
+    function updateThemeIcon() {
+      if (!themeIcon) return;
+      const isLight = body.classList.contains("light-theme");
+      themeIcon.textContent = isLight ? "☀" : "☾";
+    }
+
+    updateThemeIcon();
+
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("light-theme");
+        const isLight = body.classList.contains("light-theme");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+        updateThemeIcon();
+      });
+    }
+
+    /* ================================
+      Typing animation in hero
+    ================================== */
+    const typedTarget = document.getElementById("typedText");
+
+    if (typedTarget) {
+      const phrases = [
+        "Best way: Email or Discord.",
+        "I love talking about tech ideas.",
+        "Collabs, projects, or questions — send them."
+      ];
+
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      const TYPE_SPEED = 70;
+      const DELETE_SPEED = 40;
+      const PAUSE_BETWEEN = 1300;
+
+      function typeLoop() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (!deleting) {
+          charIndex++;
+          typedTarget.textContent = currentPhrase.slice(0, charIndex);
+
+          if (charIndex === currentPhrase.length) {
+            deleting = true;
+            setTimeout(typeLoop, PAUSE_BETWEEN);
+            return;
+          }
+        } else {
+          charIndex--;
+          typedTarget.textContent = currentPhrase.slice(0, charIndex);
+
+          if (charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+        }
+
+        setTimeout(typeLoop, deleting ? DELETE_SPEED : TYPE_SPEED);
+      }
+
+      setTimeout(typeLoop, 450);
+    }
+
+    /* ================================
+      Hero parallax
+    ================================== */
+    const floatItems = document.querySelectorAll(".profile-card, .floating-card");
+    const heroBgGlow = document.querySelector(".hero-bg-glow");
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      floatItems.forEach((el, index) => {
+        const intensity = 0.04 + index * 0.01;
+        const translateY = scrollY * intensity * -0.2;
+        el.style.transform = `translateY(${translateY}px)`;
+      });
+
+      if (heroBgGlow) {
+        const scale = 1 + scrollY * 0.0006;
+        heroBgGlow.style.transform = `scale(${scale}) translate3d(0, ${
+          scrollY * -0.04
+        }px, 0)`;
+      }
+    });
+
+    /* ================================
+      Back to top button
+    ================================== */
+    const backToTop = document.getElementById("backToTop");
+
+    if (backToTop) {
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    /* ================================
+      Copy to clipboard for contact
+    ================================== */
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1700);
+    }
+
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const value = btn.getAttribute("data-copy");
+        if (!value) return;
+        try {
+          await navigator.clipboard.writeText(value);
+          showToast("Copied: " + value);
+        } catch (err) {
+          showToast("Could not copy");
+        }
+      });
+    });
+
+    /* ================================
+      Contact form (demo only)
+    ================================== */
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    if (contactForm && formStatus) {
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = contactForm.name.value.trim();
+        const email = contactForm.email.value.trim();
+        const message = contactForm.message.value.trim();
+
+        if (!name || !email || !message) {
+          formStatus.textContent = "Please fill in all fields.";
+          return;
+        }
+
+        formStatus.textContent = "Thanks! This demo form doesn't actually send yet.";
+        contactForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
+  
